@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import BookInfo
+from .models import BookInfo,HeroInfo
 
 
 # Create your views here.
@@ -9,8 +9,8 @@ def index(request):
     # 获取模块
     # return  HttpResponse("这里是首页 <a href='/list/'>跳转</a>")
     temp1=loader.get_template('booktest/index.html')
-    book1=BookInfo.objects.all()
-    result=temp1.render({"books":book1})
+    # book1=BookInfo.objects.all()
+    result=temp1.render({})
     # 使用模块渲染字典参数
     # result=temp1.render({})
     # 将渲染的结果返回
