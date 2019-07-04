@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <body>
 <h2 style="text-align: center;margin-bottom: 30px">列表</h2>
- <!--<a href='/detail/1/'>跳转到详情页1</a>-->
- <!--<a href='/detail/2/'>跳转到详情页2</a>-->
- <!--<a href='/detail/3/'>跳转到详情页3</a>-->
- <!--<a href='/detail/4/'>跳转到详情页4</a>-->
  {% for book in book %}
 <div id="container"style="text-align: center;font-size:30px">
     {# <a href="/detail/{{book.id}}">{{book.tile}}--{{book.pub_date}}<br><hr></a> #}
+
     <a href="{% url 'booktest:detail' book.id %}">{{book.tile}}--{{book.pub_date}}</a>
+    <a class="btn btn-default"style="color: lightgreen;" href="{% url 'booktest:deletebook' book.id %}">删除</a>
 </div>
     {% endfor %}
 </body>
