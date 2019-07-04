@@ -6,14 +6,16 @@
 </head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 <body>
-<h1>详情页</h1>
-<h3>当前书籍为{{book.tile}}</h3>
+
+<div id="content" class="container">
+    <h1>详情页</h1>
+    <h3>当前书籍为:{{book.tile}}</h3>
         {% if book.heroinfo_set.count %}
-        <h3>当前角色</h3>
+        <h3>当前角色:</h3>
         <br>
             <ul>
                 {% for hero in book.heroinfo_set.all %}
-                <li>姓名:&nbsp&nbsp&nbsp{{hero.name}}----{{hero.content}}
+                <li>姓名:&nbsp&nbsp&nbsp{{hero.name}}----{{hero.content}}---{{hero.gender}}
                     <a href="{% url 'booktest:deletehero' hero.id %}">删除</a></li>
                 {% endfor%}
             </ul>
@@ -25,6 +27,7 @@
 <a class="btn btn-success" href="{% url 'booktest:addhero' book.id %}">添加英雄</a>
 
 <a href="/">返回首页</a>
+    </div>
 <br>
 </body>
 </html>

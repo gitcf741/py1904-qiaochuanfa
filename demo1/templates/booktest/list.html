@@ -13,7 +13,9 @@
 
     <a href="{% url 'booktest:detail' book.id %}">{{book.tile}}--{{book.pub_date}}</a>
     <a class="btn btn-default"style="color: lightgreen;" href="{% url 'booktest:deletebook' book.id %}">删除</a>
+
 </div>
     {% endfor %}
+<a class="btn btn-default"style="color: lightgreen;" href="{% url 'booktest:addBook'%}">添加数据</a>
 </body>
 </html>

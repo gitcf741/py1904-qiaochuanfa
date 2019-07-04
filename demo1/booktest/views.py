@@ -68,27 +68,27 @@ def addhero(request,id):
     elif request.method == "POST":
         name = request.POST.get("username")
         content = request.POST.get("content")
+        gender = request.POST.get("gender")
+        gender1 = request.POST.get("gender1")
         hero = HeroInfo()
         hero.name = name
         hero.content = content
         hero.book = book
+        hero.gender=gender
+        hero.type=gender1
         hero.save()
         return redirect(reverse("booktest:detail",args=(id,)))
 
 
-
-def addBook(request, id):
-        book = BookInfo.objects.get(pk=id)
+def addBook(request):
         if request.method == "GET":
-            return render(request, "booktest/addhero.html", {"book": book})
+            return render(request, "booktest/addBook.html")
         elif request.method == "POST":
-            name = request.POST.get("username")
-            content = request.POST.get("content")
-            hero = HeroInfo()
-            hero.name = name
-            hero.content = content
-            hero.book = book
+            tile = request.POST.get("title")
+            hero = BookInfo()
+            hero.tile = tile
             hero.save()
-            return redirect(reverse("booktest:detail", args=(id,)))
+            return redirect(reverse("booktest:list"))
+
 
 

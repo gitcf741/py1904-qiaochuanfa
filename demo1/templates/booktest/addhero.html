@@ -12,29 +12,49 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <body>
 <h3>当前书名:{{book.tile}}</h3>
-
 <form method="post" class="form-horizontal" role="form">
     <div class="form-group">
         <label for="firstname" class="col-sm-2 control-label">人物名称</label>
         <div class="col-sm-3">
-            <input name="username" type="text" class="form-control" id="firstname"
-                   placeholder="请输入人物">
+            <input name="username" type="text" class="form-control" id="firstname" placeholder="请输入人物">
         </div>
     </div>
+
     <div class="form-group">
         <label for="lastname" class="col-sm-2 control-label">技能</label>
         <div class="col-sm-3">
-            <input name="content" type="text" class="form-control" id="lastname"
-                   placeholder="请输入技能">
+            <input name="content" type="text" class="form-control" id="lastname"placeholder="请输入技能">
         </div>
     </div>
+
+
+      <div class="form-group">
+            <label for="gender" class="col-sm-2 control-label">英雄性别</label>
+            <div class="col-sm-6">
+                <select name="gender" id="gender" class="form-control">
+                    <option value="man">男</option>
+                    <option value="women">女</option>
+                </select>
+            </div>
+        </div>
+
+
+    <div class="form-group">
+            <label for="gender" class="col-sm-2 control-label">英雄性别</label>
+            <div class="col-sm-6">
+               男： <input type="radio" checked name="gender1" value="man">
+                女： <input type="radio" name="gender1" value="women">
+            </div>
+        </div>
+
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">添加</button>
         </div>
     </div>
-</form>
 
+</form>
 
 <!--<form action="{% url 'booktest:addhero' book.id %}" method="post">-->
     <!--名字<input type="text" name="username">-->

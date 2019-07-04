@@ -11,6 +11,6 @@ urlpatterns=[
 
         url(r'^addhero/(\d+)/$', views.addhero, name="addhero"),
 
-        url(r'^addBook/$', views.addBook, name="addBook"),
+        url(r'^addBook/$',views.addBook,name="addBook"),
 
     ]
