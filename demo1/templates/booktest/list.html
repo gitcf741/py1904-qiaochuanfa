@@ -16,7 +16,8 @@
  <!--<a href='/detail/4/'>跳转到详情页4</a>-->
  {% for book in book %}
 <div id="container"style="text-align: center;font-size:30px">
-    <a href="/detail/{{book.id}}">{{book.tile}}<br><hr></a>
+    {# <a href="/detail/{{book.id}}">{{book.tile}}--{{book.pub_date}}<br><hr></a> #}
+    <a href="{% url 'booktest:detail' book.id %}">{{book.tile}}--{{book.pub_date}}</a>
 </div>
     {% endfor %}
 </body>

@@ -12,7 +12,11 @@
 <br>
     <ul>
         {% for hero in book.heroinfo_set.all %}
-        <li>姓名:&nbsp&nbsp&nbsp{{hero.name}}<br><hr><br>技能:&nbsp&nbsp&nbsp{{hero.content}}</li>
+
+        <li>姓名:&nbsp&nbsp&nbsp{{hero.name}}----{{hero.content}}
+            <a href="{% url 'booktest:deletehero' hero.id %}">sha</a></li>
+
+
         {% endfor%}
     </ul>
 <br>

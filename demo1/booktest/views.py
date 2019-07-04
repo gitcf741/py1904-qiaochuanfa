@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .models import BookInfo,HeroInfo
+from django.shortcuts import *
+
 
 
 # Create your views here.
@@ -38,9 +40,20 @@ def list(request):
     # return  HttpResponse("这里是列表%s"%(s,))
 def detail(request,id):
     temp3=loader.get_template("booktest/detail.html")
-    book=BookInfo.objects.get(pk= id)
+    book=BookInfo.objects.get(pk = id)
     result=temp3.render({"book":book})
-
     return  HttpResponse(result)
 
     # return  HttpResponse("这里是%s详情页<a href='/'>跳转到首页</a>"%(id,))
+def deletehero(request,id):
+    hero =HeroInfo.objects.get(pk =id)
+    bookid=hero.book.id
+    hero.delete()
+    #
+    return  redirect(reverse("booktest:detail",args=(bookid,)))
+
+    # return HttpResponse("SHNSDF")
+    # return  HttpResponseRedirect("/detail/"+ str(bookid)+ "/")
+#
+# def addbook(request,id):
+#     return HttpResponse("添加成功")
