@@ -18,8 +18,11 @@ from django.urls import path
 from django.conf.urls import url, include
 from django.views.static import serve
 from .settings import MEDIA_ROOT
+import xadmin
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
+    path('xadmin/', xadmin.site.urls),
+
     url('',include('app1.urls',namespace="app1")),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     # 空任意匹配
