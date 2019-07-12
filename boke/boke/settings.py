@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'app1',
     'comment',
     'DjangoUeditor',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'boke.urls'
+
+
 
 TEMPLATES = [
     {
@@ -87,6 +90,17 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+HAYSTACK_CONNECTIONS = {
+    'default': {
+    'ENGINE': 'app1.whoosh_cn_backend.WhooshEngine',
+    'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    }}
+
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+
 
 
 # Password validation

@@ -24,14 +24,16 @@
 </head>
 
 <body>
+
 <div id="site-header">
 	<div class="container">
 		<div class="row">
 				<div class="col-md-4 col-sm-5 col-xs-8">
 						<div class="logo">
-								<h1><a href="{% url 'app1:index' %}"><b>博客实战</b></a></h1>
+								<h1><a href="index.html"><b>博客实战</b></a></h1>
 						</div>
 				</div><!-- col-md-4 -->
+
 				<div class="col-md-8 col-sm-7 col-xs-4">
 						<nav class="main-nav" role="navigation">
 								<div class="navbar-header">
@@ -42,17 +44,19 @@
 
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
-												<li class="cl-effect-11"><a href="{% url 'app1:index' %}" data-hover="首页">首页</a></li>
+
+                                                <li class="cl-effect-11"><a href="{% url 'app1:index' %}" data-hover="首页">首页</a></li>
 												<li class="cl-effect-11"><a href="{% url 'app1:full' %}" data-hover="博客">博客</a></li>
 												<li class="cl-effect-11"><a href="{% url 'app1:contact' %}" data-hover="联系">联系</a></li>
 										</ul>
 								</div><!-- /.navbar-collapse -->
 						</nav>
+
 						<div id="header-search-box">
 								<a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
 								<div id="search-form" class="search-form">
-										<form role="search" method="get" id="searchform" action="#">
-												<input type="search" placeholder="搜索" required>
+										<form role="search" method="get" id="searchform" action="/search/">
+												<input type="search" placeholder="搜索" name="q" required>
 												<button type="submit"><span class="ion-ios-search-strong"></span></button>
 										</form>
 								</div>
@@ -61,6 +65,10 @@
 		</div>
 	</div>
 </div>
+
+
+
+
 
 <div class="content-body">
     <div class="container">
@@ -73,7 +81,7 @@
                 <div class="widget widget-recent-posts">
                     <h3 class="widget-title">最新文章</h3>
                     <ul>
-                        <!--参数:最新5参数-->
+                        <!--参数:最新5参数将get读取的内容存都late-->
                         {% getlatestarticles 5 as latestarticles %}
 
                         {% for a in latestarticles %}
@@ -89,15 +97,15 @@
                 <div class="widget widget-archives">
                     <h3 class="widget-title">归档</h3>
                     <ul>
-                        <li>
-                            <a href="#">2017 年 5 月</a>
+                        {% gettimes as times %}
+
+                        {% for a in times %}
+                           <li>
+                            <a href="{% url 'app1:archives' a.year a.month %}">{{a.year}}年{{a.month }}月</a>
                         </li>
-                        <li>
-                            <a href="#">2017 年 4 月</a>
-                        </li>
-                        <li>
-                            <a href="#">2017 年 3 月</a>
-                        </li>
+                        {% endfor %}
+
+
                     </ul>
                 </div>
 

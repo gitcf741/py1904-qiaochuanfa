@@ -6,4 +6,9 @@ from app1.models import Article
 def getlatestarticles(num):
     # f返回最新的文章num=3
         return Article.objects.order_by("-create_time")[:num]
+@register.simple_tag
 
+def gettimes(num=3):
+    times=Article.objects.dates("create_time","month",'DESC')
+    print(times)
+    return times

@@ -24,7 +24,12 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
 
     url('',include('app1.urls',namespace="app1")),
+
+    url('',include('comment.urls',namespace="comment")),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     # 空任意匹配
     path('ueditor/', include('DjangoUeditor.urls')),
+
+    url('search/',include('haystack.urls')),
+
 ]

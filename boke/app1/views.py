@@ -8,14 +8,20 @@ from .forms import ArticeForm,CommentForm
 from django.core.paginator import Paginator
 # Create your views here.
 
+def getpage(request,object_list,per_num):
+    pagenum=request.GET.get("page")
+    pagenum= 1 if not pagenum else pagenum
+    page=Paginator(object_list,per_num).get_page(pagenum)
+    return page
+
 class IndexView(View):
     def get(self,request):
         ads = Ads.objects.all()
         articles = Article.objects.all()
-        pagenum=request.GET.get("page")
-        pagenum=1 if not pagenum else pagenum
-        page=Paginator(articles,3).get_page(pagenum)
-
+        # pagenum=request.GET.get("page")
+        # pagenum=1 if not pagenum else pagenum
+        # page=Paginator(articles,3).get_page(pagenum)
+        page=getpage(request,articles,3)
         return render(request,'app1/index.html',{'page':page,'ads':ads})
 
 class SingleView(View):
@@ -55,5 +61,11 @@ class FullView(View):
 class ContactView(View):
     def get(self, request):
         return render(request, 'app1/contact.html')
+
+class ArchivesView(View):
+    def get(self,request,year,month):
+        articles=Article.objects.filter(create_time__year=year,create_time__month=month)
+        page = getpage(request,articles,3)
+        return  render(request,"app1/index.html",{"page":page,"articles":articles})
 
 
