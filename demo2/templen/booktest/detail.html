@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投票页</title>
+</head>
+<body>
+        <h2>当前问题为 {{ question.desc }}</h2>
+        <h3>请投票</h3>
+        <ul>
+
+            <form action="{% url 'booktest:detail' question.id %}" method="post">
+                {% for c in question.chioce_set.all %}
+                {% if forloop.counter == 1 %}
+
+                <li><input checked type="radio" name="choice" value="{{ c.id }}"> {{ c.desc }}   </li>
+                {% else %}
+                <li><input type="radio" name="choice" value="{{ c.id }}"> {{ c.desc }}  </li>
+                {% endif %}
+                {% endfor %}
+                <input type="submit" value="投票">
+            </form>
+
+
+        </ul>
+</body>
+</html>

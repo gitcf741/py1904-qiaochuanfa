@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投票结果页</title>
+</head>
+<body>
+    <div class="container">
+        <h2>投票结果</h2>
+        <h3>当前问题为{{ question.desc }}</h3>
+
+        <ul>
+            {% for c in question.chioce_set.all %}
+                <li>{{ forloop.counter }}-- {{ c.desc }} 得票： {{ c.votes }}</li>
+            {% endfor %}
+
+        </ul>
+
+        <a href="{% url 'booktest:index' %}">回到首页</a>
+
+    </div>
+</body>
+</html>

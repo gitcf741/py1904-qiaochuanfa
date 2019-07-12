@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投票列表页</title>
+</head>
+
+<body>
+        <h2>问题列表</h2>
+        {% if questions %}
+            <ul>
+                {% for q in questions %}
+                    <li><a href="/detail/{{ q.id }}/">{{ forloop.counter }}--{{ q.desc }}</a></li>
+                {% empty %}
+                    <li>问题列表为空</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <li>没有问题可以投票</li>
+        {% endif %}
+
+</body>
+</html>
