@@ -12,3 +12,9 @@ def gettimes(num=3):
     times=Article.objects.dates("create_time","month",'DESC')
     print(times)
     return times
+
+@register.simple_tag
+def classif(num=3):
+    return Article.objects.order_by("-create_time")[:num]
+
+

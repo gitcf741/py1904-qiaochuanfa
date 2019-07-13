@@ -13,7 +13,7 @@
 													<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{article.create_time}}</time></a></span>
 													<span class="post-author"><a href="#">{{ article.author.username }}</a></span>
 													<span class="comments-link"><a href="#">{{article.commment_set.count}}</a></span>
-													<span class="views-count"><a href="#">{{article.view}}</a></span>
+													<span class="views-count"><a href="#">{{article.views}}</a></span>
 											</div>
 									</header>
 									<div class="entry-content clearfix">
@@ -76,9 +76,10 @@
 
 <script>
 
+
 	$(function () {
 		$("#btn-commit").click(function () {
-			$ajax({
+			$.ajax({
 				url:"{% url 'comment:comment' article.id  %}",
 				type:"post",
 
@@ -91,7 +92,7 @@
 
 				},
 				success:function (data) {
-					console.log(data)
+					// console.log(data)
 
 
 					$("#commentlist2").append('<li class="comment-item"><span class="nickname">{{name}}</span><time class="submit-date" datetime="2012-11-09T23:15:57+00:00">{{create_time}}</time><div class="text">{{content }}</div></li>')

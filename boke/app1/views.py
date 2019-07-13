@@ -25,13 +25,18 @@ class IndexView(View):
         return render(request,'app1/index.html',{'page':page,'ads':ads})
 
 class SingleView(View):
+
     def get(self,request,id):
         article = get_object_or_404(Article,pk = id)
+
         article.views+=1
+
         article.save()
 
         cf=CommentForm()
+
         return render(request,'app1/single.html',{"article":article,"cf":cf})
+
     def post(self,request,id):
         article = get_object_or_404(Article, pk=id)
         cf=CommentForm(request.POST)
@@ -41,13 +46,12 @@ class SingleView(View):
         return redirect(reverse("app1:single",args=(article.id,)))
 class AddArticleView(View):
     def get(self,request):
+        artice=Article.objects.all()
         af = ArticeForm()
-        return render(request,'app1/addarticle.html',locals())
+        return render(request,'app1/addarticle.html',{"af":af,"artice":artice})
     def post(self,request):
         af = ArticeForm(request.POST)
-
         if af.is_valid():
-
             article = af.save(commit=False)
             article.category = Category.objects.first()
             article.author = User.objects.first()
@@ -61,11 +65,18 @@ class FullView(View):
 class ContactView(View):
     def get(self, request):
         return render(request, 'app1/contact.html')
-
 class ArchivesView(View):
     def get(self,request,year,month):
+        ads=Ads.objects.all()
         articles=Article.objects.filter(create_time__year=year,create_time__month=month)
         page = getpage(request,articles,3)
-        return  render(request,"app1/index.html",{"page":page,"articles":articles})
+        return  render(request,"app1/index.html",{"page":page,"articles":articles,"ads":ads})
+
+
+#
+# class LoginView(View):
+#     def get(self,request):
+#         return render(request,'app1/login.html')
+
 
 

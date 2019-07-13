@@ -48,6 +48,7 @@
                                                 <li class="cl-effect-11"><a href="{% url 'app1:index' %}" data-hover="首页">首页</a></li>
 												<li class="cl-effect-11"><a href="{% url 'app1:full' %}" data-hover="博客">博客</a></li>
 												<li class="cl-effect-11"><a href="{% url 'app1:contact' %}" data-hover="联系">联系</a></li>
+												<li class="cl-effect-11"><a href="{% url 'app1:addarticle' %}" data-hover="文章">文章</a></li>
 										</ul>
 								</div><!-- /.navbar-collapse -->
 						</nav>
@@ -87,12 +88,13 @@
                         {% for a in latestarticles %}
                         <li>
                             <!--分类-->
-                            <a href="#">{{ a.title}}</a>
+                            <a href="{% url 'app1:single' a.id %}">{{ a.title}}</a>
                         </li>
                         {% endfor %}
 
                     </ul>
                 </div>
+
 
                 <div class="widget widget-archives">
                     <h3 class="widget-title">归档</h3>
@@ -109,18 +111,22 @@
                     </ul>
                 </div>
 
+
                 <div class="widget widget-category">
+
+
                     <h3 class="widget-title">分类</h3>
                     <ul>
+                        {% classif as clasif %}
+
+
+                        {% for a in clasif %}
                         <li>
-                            <a href="#">Django 博客教程 <span class="post-count">(13)</span></a>
+                            <a href="#">{{a.title}}<span class="post-count">{{a.views}}</span></a>
                         </li>
-                        <li>
-                            <a href="#">Python 教程 <span class="post-count">(11)</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Django 用户认证 <span class="post-count">(8)</span></a>
-                        </li>
+                        {% endfor %}
+
+
                     </ul>
                 </div>
 

@@ -13,8 +13,9 @@ class ArticleFeed(Feed):
         return  item.title
 
     def item_link(self, item):
-        return reverse('app1:single',args=(item,id))
+        return reverse('app1:single',args=(item))
 
-    # def item_description(self, item):
-    #     return  item.author.username + ":"+ item.title
+    def item_description(self, item):
+
+        return  item.author.username + ":"+ item.title
 

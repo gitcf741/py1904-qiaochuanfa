@@ -58,11 +58,13 @@
                                 <h1 class="entry-title">
                                     <a href="{% url 'app1:single' article.id %}">{{article.title}}</a>
                                 </h1>
+
                                 <div class="entry-meta">
                                     <span class="post-category"><a href="#">{{article.category}}</a></span>
                                     <span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{article.create_time}}</time></a></span>
                                     <span class="post-author"><a href="#">{{article.author}}</a></span>
                                     <span class="comments-link"><a href="#">{{ article.comment_set.count }}</a></span>
+
                                     <span class="views-count"><a href="#">{{article.views}}</a></span>
                                 </div>
                             </header>

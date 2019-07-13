@@ -9,14 +9,13 @@ urlpatterns = [
     url('^single/(\d+)/$',views.SingleView.as_view(),name="single"),
     url('^full/$', views.FullView.as_view(), name="full"),
 
-
     url('^archives/(\d+)/(\d+)/$', views.ArchivesView.as_view(), name="archives"),
 
-
     url('^contact/$', views.ContactView.as_view(), name="contact"),
-
     url(r'^addarticle/$',views.AddArticleView.as_view(),name="addarticle"),
     url(r'^rss/$',ArticleFeed()),
+
+    # url(r'^login/$',views.LoginView.as_view(),name="login")
 
 
 ]
