@@ -20,8 +20,8 @@ from django.views.static import serve
 from .settings import MEDIA_ROOT
 import xadmin
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('xadmin/', xadmin.site.urls),
+    path('admin/', admin.site.urls),
+    # path('xadmin/', xadmin.site.urls),
 
     url('',include('app1.urls',namespace="app1")),
 

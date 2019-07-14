@@ -28,15 +28,15 @@ class Article(models.Model):
     views = models.IntegerField(default=0)
     # body = models.TextField()
     body = UEditorField(imagePath="articleimg/",width="100%")
-    tags = models.ManyToManyField(Tag)
+    tags = models.ForeignKey(Tag,on_delete=models.CASCADE)
     def __str__(self):
         return self.title
 
-class User(models.Model):
-    username=models.CharField(max_length=30)
-    password=models.CharField(max_length=30)
-    def __str__(self):
-        return self.username
+# class User(models.Model):
+#     username=models.CharField(max_length=30)
+#     password=models.CharField(max_length=30)
+#     def __str__(self):
+#         return self.username
 
 
 

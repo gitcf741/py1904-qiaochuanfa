@@ -6,6 +6,7 @@ from.models import *
 from django.views.generic import View
 from .forms import ArticeForm,CommentForm
 from django.core.paginator import Paginator
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
 def getpage(request,object_list,per_num):
@@ -14,15 +15,24 @@ def getpage(request,object_list,per_num):
     page=Paginator(object_list,per_num).get_page(pagenum)
     return page
 
-class IndexView(View):
-    def get(self,request):
-        ads = Ads.objects.all()
-        articles = Article.objects.all()
-        # pagenum=request.GET.get("page")
-        # pagenum=1 if not pagenum else pagenum
-        # page=Paginator(articles,3).get_page(pagenum)
-        page=getpage(request,articles,3)
-        return render(request,'app1/index.html',{'page':page,'ads':ads})
+# 缓存信息
+# @cache_page(timeout=60*2)
+def index(request):
+    articles=Article.objects.all()
+    ads=Ads.objects.all()
+    page=getpage(request,articles,3)
+    return render(request,'app1/index.html',{'page':page,'ads':ads})
+
+
+# class IndexView(View):
+#     def get(self,request):
+#         ads = Ads.objects.all()
+#         articles = Article.objects.all()
+#         # pagenum=request.GET.get("page")
+#         # pagenum=1 if not pagenum else pagenum
+#         # page=Paginator(articles,3).get_page(pagenum)
+#         page=getpage(request,articles,3)
+#         return render(request,'app1/index.html',{'page':page,'ads':ads})
 
 class SingleView(View):
 
@@ -55,6 +65,8 @@ class AddArticleView(View):
             article = af.save(commit=False)
             article.category = Category.objects.first()
             article.author = User.objects.first()
+            print(Article.objects.first().tags)
+            article.tags = Article.objects.first().tags
             article.save()
             return redirect(reverse('app1:index'))
         return HttpResponse("添加失败")
@@ -71,12 +83,3 @@ class ArchivesView(View):
         articles=Article.objects.filter(create_time__year=year,create_time__month=month)
         page = getpage(request,articles,3)
         return  render(request,"app1/index.html",{"page":page,"articles":articles,"ads":ads})
-
-
-#
-# class LoginView(View):
-#     def get(self,request):
-#         return render(request,'app1/login.html')
-
-
-

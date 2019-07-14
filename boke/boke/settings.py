@@ -90,6 +90,15 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# 将cache存到redis中，默认采用1数据库
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.cache.RedisCache",
+        "LOCATION": "localhost:6379",
+        'TIMEOUT': 60,
+},
+}
+
 HAYSTACK_CONNECTIONS = {
     'default': {
     'ENGINE': 'app1.whoosh_cn_backend.WhooshEngine',
